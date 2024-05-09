@@ -7,7 +7,19 @@
     <title>Crystal Orbus</title>
     <script type="module" crossorigin src="/assets/index-DRCTT5-4.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-UHPAl2TC.css">
-  </head>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var location = window.location.href;
+    var redirectedUrl = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirectedUrl && redirectedUrl != location) {
+      history.replaceState(null, null, redirectedUrl);
+    }
+  });
+</script>
+
+</head>
   <body>
     <div id="app"></div>
   </body>

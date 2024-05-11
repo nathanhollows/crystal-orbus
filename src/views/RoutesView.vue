@@ -38,16 +38,13 @@ const updateStops = async (): Promise<void> => {
   )
 }
 
-const intervalID: Ref<number | undefined> = ref(undefined)
+const intervalID = setInterval(updateStops, 15000)
 
 onMounted(async () => {
   await updateStops()
-  intervalID.value = setInterval(updateStops, 15000)
 })
 
 onUnmounted(() => {
-  if (intervalID.value) {
-    clearInterval(intervalID.value)
-  }
+  clearInterval(intervalID)
 })
 </script>

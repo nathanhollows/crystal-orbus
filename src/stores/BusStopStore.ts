@@ -35,12 +35,13 @@ export const useBusStopStore = defineStore('busStopStore', {
       await Promise.all(promises)
     },
     async addGroup(group: BusStopGroupData) {
-      group.data = [] // Initialize the data array
       if (this.isGroupInStore(group)) {
         alert('Group already exists!')
         return
       }
       this.groups.push(group)
+      // remove the data property from the group
+      this.groups = this.groups.map((g) => ({ ...g, data: [] }))
       localStorage.setItem('busStopGroups', JSON.stringify(this.groups))
       alert('Group added!')
     },

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import GroupTimetableRow from '@/components/GroupTimetableRow.vue'
+import TimetableRow from '@/components/TimetableRow.vue'
+import TimetableRowPlaceholder from '@/components/TimetableRowPlaceholder.vue'
 import { type BusStopData } from '@/types/BusStopData'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { transformAndSortBusData } from '@/utils/TransformAndSort'
 // define props
 const props = defineProps<{ data: BusStopData[] }>()
@@ -30,6 +31,7 @@ const sortedBusStops = computed(() => transformAndSortBusData(props.data))
       </tr>
     </thead>
     <tbody>
+      <TimetableRow v-for="bus in sortedBusStops" :key="bus.tripId" :bus="bus" />
       <tr class="" v-for="(bus, key) in sortedBusStops" :key="key">
         <td class="px-5 py-5 border-b border-gray-200 text-sm">
           <div class="flex justify-center items-center">

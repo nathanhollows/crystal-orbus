@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import NavLogo from './logos/NavLogo.vue'
+import NavLogo from '@/components/logos/NavLogo.vue'
 import { BookmarkIcon, MapIcon } from 'lucide-vue-next'
 </script>
 <template>
   <nav class="bg-orbus-400 p-4 text-white fixed top-0 w-full">
     <div class="container mx-auto align-middle flex justify-between md:max-w-xl">
-      <NavLogo class="h-8 self-center" />
-      <div class="flex gap-3">
+      <a href="/" class="self-center">
+        <NavLogo class="h-8 self-center text-white" />
+      </a>
       <div class="flex gap-1">
         <RouterLink
           to="/"

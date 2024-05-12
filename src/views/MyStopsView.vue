@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="mt-24">
     <BusStopGroup v-for="group in groups" :key="group.name" :group="group" />
   </main>
 </template>

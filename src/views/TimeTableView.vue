@@ -1,12 +1,12 @@
 <template>
-  <main>
+  <main class="mt-24">
     <BusStopGroup v-for="group in groups" :key="group.name" :group="group" />
   </main>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, type Ref } from 'vue'
-import type { BusStopGroupData } from '@/types/BusStopGroupData'
+import type { BusStopGroupData } from '@/types/BusStopData'
 import BusStopGroup from '@/components/BusStopGroup.vue'
 import { fetchBusStop } from '@/services/BusTrackerAPI'
 

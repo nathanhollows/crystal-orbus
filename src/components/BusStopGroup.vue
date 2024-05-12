@@ -33,6 +33,13 @@
             <CopyIcon class="w-4 h-4" />
             <CheckIcon class="w-4 h-4" />
           </button>
+          <button
+            class="px-4 py-2 flex flex-center items-center gap-2 bg-slate-100 transition-all hover:bg-slate-300 text-rose-700 text-sm rounded-full"
+            v-if="savedGroup"
+            v-on:click="deleteGroup"
+          >
+            <DeleteIcon class="w-4 h-4" />
+          </button>
         </div>
       </div>
       <div class="flex gap-1">
@@ -78,7 +85,7 @@
 <script setup lang="ts">
 import GroupTimetable from '@/components/GroupTimetable.vue'
 import { type BusStopGroupData } from '@/types/BusStopData'
-import { CheckIcon, CopyIcon, BookmarkPlusIcon } from 'lucide-vue-next'
+import { CheckIcon, CopyIcon, BookmarkPlusIcon, DeleteIcon } from 'lucide-vue-next'
 import ClipboardJS from 'clipboard'
 import { onUnmounted, ref } from 'vue'
 import { useBusStopStore } from '@/stores/BusStopStore'
@@ -92,10 +99,7 @@ const savedGroup = ref(false)
 
 function createUrl(): string {
   const baseUrl = window.location.origin + '/timetable'
-  const urlSlug = props.group.name
-    .toLowerCase()
-    .replace(/[\s_]+/g, '-')
-    .replace(/[^\w-]+/g, '')
+  const urlSlug = props.group.name.replace(/[\s_]+/g, '-').replace(/[^\w-]+/g, '')
   const stopsSlug = props.group.stops.join('-')
   return `${baseUrl}/${urlSlug}/stops/${stopsSlug}`
 }
@@ -120,6 +124,15 @@ onUnmounted(() => {
 savedGroup.value = store.isGroupInStore(props.group)
 function saveGroup() {
   store.addGroup(props.group)
+  savedGroup.value = store.isGroupInStore(props.group)
+}
+
+function deleteGroup() {
+  // check if the user really wants to delete the group
+  if (!confirm('Are you sure you want to delete this group?')) {
+    return
+  }
+  store.removeGroup(props.group)
   savedGroup.value = store.isGroupInStore(props.group)
 }
 </script>

@@ -44,6 +44,11 @@ export const useBusStopStore = defineStore('busStopStore', {
       localStorage.setItem('busStopGroups', JSON.stringify(this.groups))
       alert('Group added!')
     },
+    async removeGroup(group: BusStopGroupData) {
+      this.groups = this.groups.filter((g) => g.name !== group.name)
+      localStorage.setItem('busStopGroups', JSON.stringify(this.groups))
+      alert('Group removed!')
+    },
     // Check if a BusStopGroupData is already in the store
     isGroupInStore(group: BusStopGroupData) {
       return this.groups.some((g) => g.name === group.name)

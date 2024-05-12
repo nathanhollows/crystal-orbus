@@ -1,6 +1,6 @@
 // TransformAndSort.ts
 import type { BusStopData } from '@/types/BusStopData'
-import type { BusDisplayInfo } from '@/types/BusStopGroupData'
+import type { BusDisplayInfo } from '@/types/BusStopData'
 
 export function transformAndSortBusData(busStopsData: BusStopData[]): BusDisplayInfo[] {
   const busDisplayInfo: BusDisplayInfo[] = []
@@ -12,6 +12,7 @@ export function transformAndSortBusData(busStopsData: BusStopData[]): BusDisplay
           stopVisit.estimatedMinutesUntilDeparture ?? stopVisit.scheduledMinutesUntilDeparture
 
         busDisplayInfo.push({
+          tripId: stopVisit.tripId,
           lineNumber: visit.directionOfLine.lineNumber,
           destinationName: visit.directionOfLine.destinationName,
           stopName: stopVisit.stopName,

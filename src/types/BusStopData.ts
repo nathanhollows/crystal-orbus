@@ -1,3 +1,17 @@
+export interface BusStopGroupData {
+  name: string
+  stops: string[]
+  data: BusStopData[]
+}
+
+export interface BusDisplayInfo {
+  tripId: string
+  lineNumber: string
+  destinationName: string
+  stopName: string
+  departureTime: number // This will either be the estimated or the scheduled departure time
+}
+
 export interface BusStopData {
   stop: StopInfo
   nextStopVisits: NextStopVisit[]

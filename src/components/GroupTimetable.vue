@@ -32,28 +32,8 @@ const sortedBusStops = computed(() => transformAndSortBusData(props.data))
     </thead>
     <tbody>
       <TimetableRow v-for="bus in sortedBusStops" :key="bus.tripId" :bus="bus" />
-      <tr class="" v-for="(bus, key) in sortedBusStops" :key="key">
-        <td class="px-5 py-5 border-b border-gray-200 text-sm">
-          <div class="flex justify-center items-center">
-            <span
-              class="block rounded-full bg-black text-white text-center px-3 py-1 text-sm font-semibold"
-              >{{ bus.lineNumber }}</span
-            >
-          </div>
-        </td>
-        <td class="px-5 py-5 border-b border-gray-200 text-sm">
-          <p class="text-gray-900 whitespace-no-wrap">
-            {{ bus.destinationName }}
-            <br />
-            <span class="text-xs text-gray-500">{{ bus.stopName }}</span>
-          </p>
-        </td>
-        <td class="px-5 py-5 border-b border-gray-200">
-          <p class="text-gray-900 whitespace-no-wrap">
-            {{ bus.departureTime }} {{ bus.departureTime === 1 ? 'min' : 'mins' }}
-          </p>
-        </td>
-      </tr>
+      <TimetableRowPlaceholder v-if="sortedBusStops.length === 0" />
+      <TimetableRowPlaceholder v-if="sortedBusStops.length === 0" />
     </tbody>
   </table>
 </template>
